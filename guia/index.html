@@ -314,7 +314,7 @@
   <p class="sub">Para ler o manual, não precisa de nada. Para as ferramentas, Python 3.10 ou mais novo (já vem no Linux e no macOS; no Windows, instale pelo python.org e troque <code>python3</code> por <code>py</code> em todos os comandos). Os comandos são digitados no terminal: Terminal no Linux e no macOS, PowerShell no Windows.</p>
   <div class="grid g2">
     <div class="card"><h3>Baixar o repositório</h3><p>Com git, ou pelo botão "Code → Download ZIP" no GitHub.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/manual-2-anos-ia</span>
-<span class="k">cd</span> manual-2-anos-ia</pre></div>
+<span class="k">cd</span> manual-2-anos-ia   <span class="c"># baixou o ZIP? a pasta é manual-2-anos-ia-main</span></pre></div>
     <div class="card"><h3>Conferir que tudo funciona</h3><p>Roda os 16 testes das ferramentas. Deve terminar com <code>OK</code>.</p><pre><span class="k">python3 -m unittest</span>
 <span class="c"># Ran 16 tests ... OK</span></pre></div>
   </div>
@@ -323,7 +323,7 @@
 <section id="guia"><div class="wrap">
   <span class="chip">Guia de uso · passo a passo</span>
   <h2>As 5 ferramentas, uma por vez</h2>
-  <p class="sub">Depois do passo 1, os comandos rodam dentro da pasta <code>ferramentas/</code>. O que você anota fica num arquivo em <code>~/.manual-ia/</code>, na sua pasta pessoal. Para guardar em outro lugar, rode antes <code>export MANUAL_IA_DADOS=/outra/pasta</code> ou acrescente <code>--arquivo meu.json</code> ao comando.</p>
+  <p class="sub">Depois do passo 1, os comandos rodam dentro da pasta <code>ferramentas/</code>. O que você anota fica num arquivo em <code>~/.manual-ia/</code>, na sua pasta pessoal. Para guardar em outro lugar, rode antes <code>export MANUAL_IA_DADOS=/outra/pasta</code> (no PowerShell: <code>$env:MANUAL_IA_DADOS="C:\outra\pasta"</code>) ou acrescente <code>--arquivo meu.json</code> ao comando.</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Leia o manual de uma página</h3>
@@ -335,9 +335,7 @@
   <div class="step"><div class="b">2</div><div>
     <h3>Monte o cartão de uma notícia (passos 1 e 2)</h3>
     <p><code>campo.py</code> faz as perguntas e devolve um cartão com campo, incentivo, fatos e suposições. Sem argumentos, pergunta tudo no terminal. Valores de <code>--campo</code>: <code>seguranca</code>, <code>acelera</code>, <code>centro</code>, <code>governo</code> (ou <code>"?"</code> se ainda não souber).</p>
-<pre><span class="k">python3 campo.py</span> --manchete <span class="s">"IA invade empresa em teste"</span> --quem <span class="s">"laboratório X"</span> \
-  --campo seguranca --incentivo <span class="s">"mostrar que o modelo é poderoso"</span> \
-  --fato <span class="s">"teste autorizado"</span> --suposicao <span class="s">"vai acontecer em qualquer empresa"</span>
+<pre><span class="k">python3 campo.py</span> --manchete <span class="s">"IA invade empresa em teste"</span> --quem <span class="s">"laboratório X"</span> --campo seguranca --incentivo <span class="s">"mostrar que o modelo é poderoso"</span> --fato <span class="s">"teste autorizado"</span> --suposicao <span class="s">"vai acontecer em qualquer empresa"</span>
 <span class="c"># Veredito: Não confirmado. Guarde para a janela e não repasse.</span></pre>
   </div></div>
 

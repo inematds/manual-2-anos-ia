@@ -314,7 +314,7 @@
   <p class="sub">Para leer el manual no necesitas nada. Para las herramientas, necesitas Python 3.10 o una versión posterior (ya viene en Linux y macOS; en Windows, instálalo desde python.org y cambia <code>python3</code> por <code>py</code> en todos los comandos). Los comandos se escriben en la terminal: Terminal en Linux y macOS, PowerShell en Windows.</p>
   <div class="grid g2">
     <div class="card"><h3>Descargar el repositorio</h3><p>Con git o con el botón «Code → Download ZIP» en GitHub.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/manual-2-anos-ia</span>
-<span class="k">cd</span> manual-2-anos-ia</pre></div>
+<span class="k">cd</span> manual-2-anos-ia   <span class="c"># ¿descargaste el ZIP? la carpeta es manual-2-anos-ia-main</span></pre></div>
     <div class="card"><h3>Comprobar que todo funciona</h3><p>Ejecuta las 16 pruebas de las herramientas. Debe terminar con <code>OK</code>.</p><pre><span class="k">python3 -m unittest</span>
 <span class="c"># Ran 16 tests ... OK</span></pre></div>
   </div>
@@ -323,7 +323,7 @@
 <section id="guia"><div class="wrap">
   <span class="chip">Guía de uso · paso a paso</span>
   <h2>Las 5 herramientas, una por una</h2>
-  <p class="sub">Después del paso 1, los comandos se ejecutan dentro de la carpeta <code>ferramentas/</code>. Lo que anotas queda en un archivo en <code>~/.manual-ia/</code>, en tu carpeta personal. Para guardarlo en otro lugar, ejecuta antes <code>export MANUAL_IA_DADOS=/otra/carpeta</code> o agrega <code>--arquivo mio.json</code> al comando. Las herramientas muestran sus mensajes en portugués.</p>
+  <p class="sub">Después del paso 1, los comandos se ejecutan dentro de la carpeta <code>ferramentas/</code>. Lo que anotas queda en un archivo en <code>~/.manual-ia/</code>, en tu carpeta personal. Para guardarlo en otro lugar, ejecuta antes <code>export MANUAL_IA_DADOS=/otra/carpeta</code> (en PowerShell: <code>$env:MANUAL_IA_DADOS="C:\otra\carpeta"</code>) o agrega <code>--arquivo mio.json</code> al comando. Las herramientas muestran sus mensajes en portugués.</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Lee el manual de una página</h3>
@@ -335,9 +335,7 @@
   <div class="step"><div class="b">2</div><div>
     <h3>Arma la ficha de una noticia (pasos 1 y 2)</h3>
     <p><code>campo.py</code> hace las preguntas y devuelve una ficha con el campo, el incentivo, los hechos y las suposiciones. Sin argumentos, pregunta todo en la terminal. Valores de <code>--campo</code>: <code>seguranca</code> (seguridad), <code>acelera</code> (aceleracionistas), <code>centro</code> (centristas), <code>governo</code> (gobierno), o <code>"?"</code> si todavía no lo sabes.</p>
-<pre><span class="k">python3 campo.py</span> --manchete <span class="s">"La IA invade una empresa durante una prueba"</span> --quem <span class="s">"laboratorio X"</span> \
-  --campo seguranca --incentivo <span class="s">"mostrar que el modelo es poderoso"</span> \
-  --fato <span class="s">"prueba autorizada"</span> --suposicao <span class="s">"pasará en cualquier empresa"</span>
+<pre><span class="k">python3 campo.py</span> --manchete <span class="s">"La IA invade una empresa durante una prueba"</span> --quem <span class="s">"laboratorio X"</span> --campo seguranca --incentivo <span class="s">"mostrar que el modelo es poderoso"</span> --fato <span class="s">"prueba autorizada"</span> --suposicao <span class="s">"pasará en cualquier empresa"</span>
 <span class="c"># Veredito: Não confirmado. Guarde para a janela e não repasse.</span></pre>
   </div></div>
 
