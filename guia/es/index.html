@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>manual-2-anos-ia — 4 pasos para atravesar los próximos 2 años de IA sin pánico</title>
+<meta name="description" content="Un método en 4 pasos para lidiar con la ansiedad por la IA, 5 herramientas locales en Python y el paso a paso para crear tu propio manual.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/manual-2-anos-ia/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/manual-2-anos-ia/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/manual-2-anos-ia/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    --ambt:rgba(250,204,21,.14); --ok:#4ade80; --mid:#fb923c; --bad:#f87171;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    --ambt:rgba(161,98,7,.12); --ok:#15803d; --mid:#c2410c; --bad:#b91c1c;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light nav{background:rgba(246,247,249,.85)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:var(--ambt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  body.light .btn{background:#FACC15}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:860px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:36ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:64ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.95rem;margin:0}
+  .card p+p{margin-top:.6em}
+  .card .inc{display:block;margin-top:.8em;padding-top:.7em;border-top:1px dashed var(--line);font-size:.9rem;color:var(--txt)}
+  .card .inc b{color:var(--amb);font-family:Sora;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.2em}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:var(--ambt);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;margin:0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere;background:var(--bg2);border:1px solid var(--line);border-radius:5px;padding:.05em .35em;font-size:.88em}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  body.light .step .b{background:#FACC15}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* diagrama dos 4 passos */
+  .rota{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:8px}
+  .rota::before{content:"";position:absolute;left:12%;right:12%;top:38px;height:2px;background:linear-gradient(90deg,var(--line),var(--amb),var(--line))}
+  .rota .p{position:relative;text-align:center;padding:0 10px}
+  .rota .ic{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;background:var(--card);border:2px solid var(--amb);display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+  .rota .ic svg{width:38px;height:38px;stroke:var(--amb);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .rota h3{font-size:1rem;margin-bottom:.35em}
+  .rota .q{font-family:Sora;font-size:.8rem;color:var(--amb);margin-bottom:.4em}
+  .rota p{color:var(--mut);font-size:.9rem;margin:0}
+  .rota .tool{display:inline-block;margin-top:.6em;font-family:"JetBrains Mono";font-size:.78rem;color:var(--txt);background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:.1em .45em}
+  @media(max-width:820px){.rota{grid-template-columns:1fr 1fr;row-gap:30px}.rota::before{display:none}}
+  @media(max-width:460px){.rota{grid-template-columns:1fr}}
+  /* metáfora */
+  .barco{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px}
+  .barco .card{display:flex;gap:14px;align-items:flex-start}
+  .barco .big{font-family:Sora;font-weight:800;font-size:1.6rem;line-height:1;color:var(--mut);flex:0 0 auto}
+  .barco .card.leme{border-color:var(--amb)} .barco .card.leme .big{color:var(--amb)}
+  @media(max-width:600px){.barco{grid-template-columns:1fr}}
+  /* campos */
+  .campo .tag{display:inline-block;font-family:Sora;font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.25em .6em;border-radius:6px;margin-bottom:.7em;background:var(--ambt);color:var(--amb)}
+  .campo.gov{border-style:dashed}
+  .perg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+  .perg div{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;font-family:Sora;font-weight:600;font-size:.92rem}
+  .perg div span{display:block;color:var(--amb);font-size:1.3rem;font-weight:800;margin-bottom:.15em}
+  @media(max-width:820px){.perg{grid-template-columns:1fr 1fr}}
+  .janela{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:22px}
+  .janela div{border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:.8rem;color:var(--mut);background:var(--card)}
+  .janela div b{display:block;font-family:Sora;color:var(--txt);font-size:.85rem;margin-bottom:.2em}
+  .janela div.on{border-color:var(--amb);background:var(--ambt);color:var(--txt)}
+  .janela div.on b{color:var(--amb)}
+  @media(max-width:600px){.janela{grid-template-columns:repeat(4,1fr)}}
+  /* TLC */
+  .tlc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tlc .card .L{font-family:Sora;font-weight:800;font-size:2.6rem;color:var(--amb);line-height:1}
+  .tlc .card .w{font-family:Sora;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:.2em 0 .6em}
+  .tlc .card .bar{margin-top:.8em;font-size:.85rem;color:var(--txt);border-left:3px solid var(--amb);padding-left:.6em}
+  @media(max-width:820px){.tlc{grid-template-columns:1fr}}
+  .exp{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .exp h3{font-size:1rem;margin-bottom:.2em}
+  .exp .row{display:grid;grid-template-columns:170px minmax(0,1fr) 110px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .exp .row:last-of-type{border:none}
+  .exp .dots{display:flex;gap:6px}
+  .exp .dots i{flex:1;max-width:70px;height:12px;border-radius:4px;background:var(--bg2);border:1px solid var(--line)}
+  .exp .dots i.y{background:var(--amb);border-color:var(--amb)}
+  .exp .lv{font-family:Sora;font-weight:700;font-size:.78rem;text-align:right}
+  .lv.a{color:var(--bad)} .lv.ma{color:var(--mid)} .lv.mb{color:var(--amb)} .lv.b{color:var(--ok)}
+  .exp small{display:block;color:var(--mut);margin-top:10px}
+  @media(max-width:560px){.exp .row{grid-template-columns:1fr 90px}.exp .row .dots{grid-column:1/-1;order:3}}
+  /* pipeline */
+  .pipe{counter-reset:p;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .pipe .card{position:relative;padding-top:18px}
+  .pipe .card h3{font-size:.98rem}
+  .pipe .card .who{position:absolute;top:14px;right:14px;font-size:.95rem}
+  .pipe .card .t{display:block;margin-top:.55em;font-size:.82rem;color:var(--txt)}
+  @media(max-width:820px){.pipe{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.pipe{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:Sora;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  td:first-child{font-weight:600;white-space:nowrap}
+  .tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px}
+  @media(max-width:560px){td:first-child{white-space:normal}}
+  .compl{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:24px;flex-wrap:wrap}
+  .compl div{flex:1 1 320px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🧭</span> manual-2-anos-ia</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#passos">Los 4 pasos</a>
+    <a class="sec" href="#campos">Los campos</a>
+    <a class="sec" href="#tlc">TLC</a>
+    <a class="sec" href="#guia">Herramientas</a>
+    <a class="sec" href="#criar">Cómo crear</a>
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/manual-2-anos-ia" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Manual · método INEMA · herramientas locales</span>
+      <h1>No controlas el mar. <span class="amb">Solo el timón.</span></h1>
+      <p class="lead">4 pasos para atravesar los próximos 2 años de IA sin pánico y una guía para crear tu propio manual.</p>
+      <div class="cta">
+        <a class="btn" href="#passos">Ver los 4 pasos</a>
+        <a class="btn ghost" href="https://github.com/inematds/manual-2-anos-ia" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-es.jpg" alt="Manual de IA: 4 pasos para atravesar los próximos 2 años sin pánico"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">En resumen</span>
+  <p>Este es un manual breve para quienes sienten ansiedad por las noticias sobre inteligencia artificial. Organiza el tema en 4 pasos: entender qué pasó, saber quién habla y por qué, medir qué cambia en tu trabajo y actuar en pequeñas dosis. Incluye 5 herramientas sencillas que funcionan en tu computadora sin internet y los pasos para crear un manual parecido para tu familia, equipo o escuela. Para leerlo, basta con abrir la página; para usar las herramientas, solo necesitas Python 3.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">Qué es</span>
+  <h2>Un barco pequeño en la niebla</h2>
+  <p class="sub">La metáfora de todo el manual: el mar y el viento son la IA, las empresas y los gobiernos. No los controlas. Pero el timón es tuyo.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Los 4 pasos del manual y las herramientas La Ventana y Una tarea al día" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="barco">
+    <div class="card"><span class="big">✕</span><div><h3>Lo que no controlas</h3><p>La velocidad de los modelos, las decisiones de las empresas, la carrera entre países y los titulares de mañana.</p></div></div>
+    <div class="card leme"><span class="big">✓</span><div><h3>Lo que sí controlas</h3><p>Cuándo lees las noticias, cómo las lees, qué aprendes, cómo usas la IA en tu trabajo y a quién ayudas.</p></div></div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><h3>📖 Manual en 5 minutos</h3><p>Un archivo por paso y una página única para imprimir y pegar en el refrigerador o en el mural del equipo.</p></div>
+    <div class="card"><h3>🛠️ 5 herramientas locales</h3><p>Scripts en Python, sin dependencias, cuentas ni internet. Tus datos quedan en un archivo en tu equipo.</p></div>
+    <div class="card"><h3>🧩 Cómo crear el tuyo</h3><p>El proceso que usamos para convertir un tema en un manual, videos y herramientas, con las herramientas de cada etapa.</p></div>
+  </div>
+</div></section>
+
+<section id="passos"><div class="wrap">
+  <span class="chip">El método</span>
+  <h2>Los 4 pasos</h2>
+  <p class="sub">Cada paso responde una pregunta y tiene una herramienta. Sigue el orden la primera vez; después, vuelve al paso que necesites.</p>
+  <div class="rota">
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/></svg></div>
+      <h3>1. Entender los vientos</h3>
+      <div class="q">¿Qué pasó?</div>
+      <p>Escribe la noticia en una línea, sin adjetivos, e identifica la decisión humana que la precedió.</p>
+      <span class="tool">campo.py</span>
+    </div>
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="7" cy="15" r="3.5"/><circle cx="17" cy="15" r="3.5"/><path d="M10.5 15h3M5 11.5 7 5h2l1 6M19 11.5 17 5h-2l-1 6"/></svg></div>
+      <h3>2. Ver a través de la niebla</h3>
+      <div class="q">¿Quién habla y por qué?</div>
+      <p>Tres campos y un cuarto actor. Cuatro preguntas. Un momento a la semana para revisar las noticias.</p>
+      <span class="tool">janela.py</span>
+    </div>
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M10 21l1-12h2l1 12M9 9h6M10 6h4l-1-3h-2z"/><path d="M4 6l3 1M20 6l-3 1M4 11l3-.5M20 11l-3-.5"/><path d="M6 21h12"/></svg></div>
+      <h3>3. Encontrar el faro</h3>
+      <div class="q">¿Qué cambia en MI trabajo?</div>
+      <p>Pasa tus tareas por el modelo TLC: Confianza, Aprendizaje, Contacto.</p>
+      <span class="tool">tlc.py</span>
+    </div>
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20 18 6M6 4l14 14"/><path d="M15 4l5 5M4 15l5 5"/></svg></div>
+      <h3>4. Remar hasta la playa</h3>
+      <div class="q">¿Qué hago ahora?</div>
+      <p>Mira hacia atrás, haz una tarea al día con IA y encuentra tu aporte.</p>
+      <span class="tool">tarefa_dia.py · contribuicao.py</span>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:34px">
+    <div class="card"><div class="num">1</div><h3>Vientos que han soplado</h3><p>Relatos de agentes de IA que, durante pruebas de intrusión con las protecciones reducidas a propósito, salieron del entorno aislado y llegaron a sistemas reales; modelos que escriben instrucciones para sí mismos; IA que encuentra fallas en empresas durante pruebas de seguridad; predicciones de catástrofes. Casi siempre hay <strong>una decisión humana al principio</strong>, y las decisiones humanas pueden exigirse responsabilidades.</p><p><em>Regla del manual: si no confirmas una cifra en la fuente, déjala como «dicen que».</em></p></div>
+    <div class="card"><div class="num">4</div><h3>Tres remos</h3><p><strong>Mirar hacia atrás:</strong> en 1975, en Asilomar, los biólogos pausaron la ingeniería genética y escribieron reglas; la aviación creó agencias como la FAA; EE. UU. y la URSS firmaron acuerdos nucleares.</p><p><strong>Una tarea al día:</strong> el miedo que evitamos crece; el miedo que enfrentamos en pequeñas dosis disminuye.</p><p><strong>Tu aporte:</strong> «no puedes cubrir la Tierra de cuero, pero sí puedes ponerte un par de zapatos».</p></div>
+  </div>
+</div></section>
+
+<section id="campos"><div class="wrap">
+  <span class="chip">Paso 2 · ver a través de la niebla</span>
+  <h2>Los tres campos y el cuarto actor</h2>
+  <p class="sub">Casi todas las noticias sobre IA vienen de uno de estos lugares. Ninguno es el villano; cada uno tiene un incentivo. Ver todo el tablero no te dice quién tiene razón: te dice por qué habla como habla.</p>
+  <div class="grid g4">
+    <div class="card campo"><span class="tag">Seguridad</span><h3>«Vamos despacio»</h3><p>Límites, pruebas, regulación.</p><span class="inc"><b>Incentivo</b>Empresas que se preparan para salir a bolsa; «solo nosotros sabemos controlarla» también vende. Fíjate en los nombres de productos míticos.</span></div>
+    <div class="card campo"><span class="tag">Aceleracionistas</span><h3>«Más rápido»</h3><p>Velocidad, código abierto, menos regulación.</p><span class="inc"><b>Incentivo</b>Muchos son inversionistas: cuanto más rápido, mayor el retorno.</span></div>
+    <div class="card campo"><span class="tag">Centristas</span><h3>«Los daños de hoy»</h3><p>La IA es una herramienta poderosa. El foco está en el empleo, los deepfakes, los sesgos y los datos personales.</p><span class="inc"><b>Incentivo</b>Menos titulares y más realidad. Suelen ser investigadores y periodistas.</span></div>
+    <div class="card campo gov"><span class="tag">Gobierno · 4.º actor</span><h3>«La carrera»</h3><p>EE. UU. × China. Economía.</p><span class="inc"><b>Incentivo</b>Una buena parte del mercado bursátil se apoya en empresas de IA. Frenar cuesta caro.</span></div>
+  </div>
+  <div class="perg">
+    <div><span>?</span>¿Qué estoy suponiendo?</div>
+    <div><span>✓</span>¿Cuáles son los hechos?</div>
+    <div><span>◎</span>¿De qué campo viene?</div>
+    <div><span>$</span>¿Cuál es el incentivo?</div>
+  </div>
+  <h3 style="margin-top:40px;font-size:1.25rem">La Ventana: un momento a la semana para la ansiedad</h3>
+  <p class="mut" style="max-width:68ch">La psicología lo llama <strong>aplazamiento de la preocupación</strong>. Durante la semana, solo anota el titular. En el horario fijo, lee todo, marca el campo, responde las cuatro preguntas, cierra y sigue con tu día.</p>
+  <div class="janela">
+    <div><b>Lun</b>anota</div><div><b>Mar</b>anota</div><div><b>Mié</b>anota</div><div><b>Jue</b>anota</div><div><b>Vie</b>anota</div><div><b>Sáb</b>anota</div><div class="on"><b>Dom 18 h</b>lee · cierra</div>
+  </div>
+</div></section>
+
+<section id="tlc"><div class="wrap">
+  <span class="chip">Paso 3 · encontrar el faro</span>
+  <h2>El modelo TLC</h2>
+  <p class="sub">Sócrates pensaba que la escritura destruiría la memoria. El tractor, la radio, la televisión y el smartphone llegaron con la misma alarma. La psicóloga Amy Orben, de Cambridge, llama a esto el ciclo del pánico tecnológico. En lugar de entrar en pánico, mide tu caso: cada barrera aleja el riesgo.</p>
+  <div class="tlc">
+    <div class="card"><div class="L">T</div><div class="w">Trust · Confianza</div><p>¿El trabajo exige confianza y que alguien responda por el resultado?</p><div class="bar">Hay una barrera cuando la respuesta es <strong>sí</strong>. Aún no confiamos en un médico, auditor o abogado robot.</div></div>
+    <div class="card"><div class="L">L</div><div class="w">Learn · Aprender</div><p>¿La IA aprende rápido lo que haces? Digital, repetible y fácil de revisar = aprende rápido.</p><div class="bar">Hay una barrera cuando la respuesta es <strong>no</strong>.</div></div>
+    <div class="card"><div class="L">C</div><div class="w">Contact · Contacto</div><p>¿Necesita contacto físico con el mundo: manos, cuerpo, presencia, lugar?</p><div class="bar">Hay una barrera cuando la respuesta es <strong>sí</strong>.</div></div>
+  </div>
+  <div class="exp">
+    <h3>Barreras × exposición</h3>
+    <div class="row"><span>Programación</span><span class="dots"><i></i><i></i><i></i></span><span class="lv a">0/3 · ALTA</span></div>
+    <div class="row"><span>Atención por chat</span><span class="dots"><i></i><i></i><i></i></span><span class="lv a">0/3 · ALTA</span></div>
+    <div class="row"><span>Contabilidad</span><span class="dots"><i class="y"></i><i></i><i></i></span><span class="lv ma">1/3 · MEDIA-ALTA</span></div>
+    <div class="row"><span>Electricista</span><span class="dots"><i class="y"></i><i class="y"></i><i></i></span><span class="lv mb">2/3 · MEDIA-BAJA</span></div>
+    <div class="row"><span>Enfermería</span><span class="dots"><i class="y"></i><i class="y"></i><i class="y"></i></span><span class="lv b">3/3 · BAJA</span></div>
+    <small>Ejemplos ilustrativos (cada cuadro amarillo = una barrera). Ejecuta <code>tlc.py</code> con tus respuestas: la misma profesión cambia según las tareas. La programación y la atención por chat pasan por las tres barreras sin tropezar; por eso son las primeras en sentir el impacto.</small>
+  </div>
+  <p style="margin-top:22px;max-width:70ch"><strong class="amb">Tu ventaja:</strong> conexión humana + dominio de tu área. La computadora nos gana al ajedrez desde hace décadas y seguimos jugando ajedrez, entre humanos.</p>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requisitos</span>
+  <h2>Solo Python 3</h2>
+  <p class="sub">Para leer el manual no necesitas nada. Para las herramientas, necesitas Python 3.10 o una versión posterior (ya viene en Linux y macOS; en Windows, instálalo desde python.org).</p>
+  <div class="grid g2">
+    <div class="card"><h3>Descargar el repositorio</h3><p>Con git o con el botón «Code → Download ZIP» en GitHub.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/manual-2-anos-ia</span>
+<span class="k">cd</span> manual-2-anos-ia</pre></div>
+    <div class="card"><h3>Comprobar que todo funciona</h3><p>Ejecuta las 16 pruebas de las herramientas. Debe terminar con <code>OK</code>.</p><pre><span class="k">python3 -m unittest</span>
+<span class="c"># Ran 16 tests ... OK</span></pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guía de uso · paso a paso</span>
+  <h2>Las 5 herramientas, una por una</h2>
+  <p class="sub">Todos los comandos se ejecutan dentro de la carpeta <code>ferramentas/</code>. Los datos quedan en <code>~/.manual-ia/</code> (cámbialo con la variable <code>MANUAL_IA_DADOS</code> o con <code>--arquivo</code>).</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Lee el manual de una página</h3>
+    <p>Empieza por <a href="https://github.com/inematds/manual-2-anos-ia/blob/main/manual/MANUAL.md" target="_blank" rel="noopener">manual/MANUAL.md</a> (en portugués). Los detalles de cada paso están en <code>manual/01…04</code>.</p>
+<pre><span class="k">cd</span> ferramentas</pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Arma la ficha de una noticia (pasos 1 y 2)</h3>
+    <p><code>campo.py</code> hace las preguntas y devuelve una ficha con el campo, el incentivo, los hechos y las suposiciones. Sin argumentos, pregunta todo en la terminal.</p>
+<pre><span class="k">python3 campo.py</span> --manchete <span class="s">"La IA invade una empresa durante una prueba"</span> --quem <span class="s">"laboratorio X"</span> \
+  --campo seguranca --incentivo <span class="s">"mostrar que el modelo es poderoso"</span> \
+  --fato <span class="s">"prueba autorizada"</span> --suposicao <span class="s">"pasará en cualquier empresa"</span>
+<span class="c"># Veredito: Não confirmado. Guarde para a janela e não repasse.</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Usa La Ventana durante la semana (paso 2)</h3>
+    <p>Anota el titular y <strong>no lo leas ahora</strong>. En el horario fijo, haz la lista, lee y cierra.</p>
+<pre><span class="k">python3 janela.py add</span> <span class="s">"Agentes salieron del sandbox durante una prueba"</span> --campo seguranca
+<span class="k">python3 janela.py listar</span>        <span class="c"># en el horario de la ventana, agrupado por campo</span>
+<span class="k">python3 janela.py ler</span> --todas    <span class="c"># cierra la ventana y sigue</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Pasa tus tareas por TLC (paso 3)</h3>
+    <p>Responde s/n para Confianza, Aprendizaje y Contacto. Sin argumentos, entra en modo interactivo.</p>
+<pre><span class="k">python3 tlc.py</span> <span class="s">"Atención por chat"</span> --confianca n --aprende s --contato n
+<span class="c"># Barreiras: 0/3  ->  exposição ALTA</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Una tarea al día con IA (paso 4)</h3>
+    <p>Registra la tarea pequeña del día y lleva la cuenta de la racha.</p>
+<pre><span class="k">python3 tarefa_dia.py feito</span> <span class="s">"le pedí a la IA que me explicara una factura"</span>
+<span class="k">python3 tarefa_dia.py status</span>   <span class="c"># Sequência atual: 1 dia(s) ■</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Elige tu aporte (paso 4)</h3>
+    <p>Cuatro opciones listas (detectar deepfakes con tus padres y abuelos, establecer reglas con tus hijos, ayudar a colegas, crear un manual para tu grupo), cada una con un plan de 4 semanas.</p>
+<pre><span class="k">python3 contribuicao.py listar</span>
+<span class="k">python3 contribuicao.py plano</span> 1 --para <span class="s">"mi mamá"</span> --salvar plano.md</pre>
+  </div></div>
+</div></section>
+
+<section id="criar"><div class="wrap">
+  <span class="chip">Cómo crear el manual</span>
+  <h2>Del tema al manual, los videos y las herramientas</h2>
+  <p class="sub">Así es como INEMA convierte un tema en tres piezas que se refuerzan entre sí: un texto de 5 minutos, un video de 3 minutos y herramientas para el uso diario. Más detalles en <a href="https://github.com/inematds/manual-2-anos-ia/blob/main/COMO-CRIAR-O-MANUAL.md" target="_blank" rel="noopener">COMO-CRIAR-O-MANUAL.md</a> (en portugués).</p>
+  <div class="pipe">
+    <div class="card"><span class="who">🧠</span><div class="num">1</div><h3>Elegir el tema y la referencia</h3><p>Una frase: ¿qué miedo o duda resuelve esto?</p></div>
+    <div class="card"><span class="who">⚙️</span><div class="num">2</div><h3>Descargar y transcribir</h3><p>Texto con marcas de tiempo.</p><span class="t">inemavox · yt-dlp · Whisper local</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">3</div><h3>Extraer la estructura</h3><p>Pasos, metáfora, ejemplos, frases contundentes.</p><span class="t">agente de IA</span></div>
+    <div class="card"><span class="who">🤖🧠</span><div class="num">4</div><h3>Verificar los hechos</h3><p>Confirmado o no confirmado, con fuente.</p><span class="t">agente + búsqueda web</span></div>
+    <div class="card"><span class="who">🧠🤖</span><div class="num">5</div><h3>Escribir el manual</h3><p>Un archivo por paso + una página imprimible.</p><span class="t">Markdown</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">6</div><h3>Convertirlo en herramienta</h3><p>Lo que se repite se convierte en un script local y probado.</p><span class="t">Python 3 · unittest</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">7</div><h3>Rediseñar como imagen</h3><p>Banners, diagramas y portada.</p><span class="t">Codex image_gen · flux2-klein (respaldo)</span></div>
+    <div class="card"><span class="who">🤖🧠</span><div class="num">8</div><h3>Guion y video</h3><p>Explicativo 16:9 y corte 9:16 con avatar.</p><span class="t">explicavideos · estudio HeyGen</span></div>
+    <div class="card"><span class="who">⚙️</span><div class="num">9</div><h3>Traducir PT → EN/ES</h3><p>Guía, README y videos en 3 idiomas.</p><span class="t">traductor central de INEMA</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">10</div><h3>Guía / página de inicio</h3><p>Una sola página, sin compilación.</p><span class="t">GitHub Pages + Actions</span></div>
+    <div class="card"><span class="who">⚙️🧠</span><div class="num">11</div><h3>Publicar</h3><p>Video, comunidad y catálogo.</p><span class="t">YouTube · Telegram · inema.club</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">12</div><h3>Revisar con ojos nuevos</h3><p>Un agente que nunca vio el trabajo lo evalúa.</p><span class="t">revisor independiente</span></div>
+  </div>
+  <p class="mut" style="margin-top:14px;font-size:.88rem">🧠 sesión con una persona · ⚙️ script · 🤖 agente de IA</p>
+
+  <h3 style="margin-top:40px;font-size:1.25rem">Herramientas públicas para crear el tuyo</h3>
+  <p class="mut" style="max-width:68ch;margin-bottom:16px">Cualquier persona puede crear un manual parecido con herramientas comunes:</p>
+  <div class="tw"><table>
+    <tr><th>Herramienta</th><th>Para qué sirve en el manual</th></tr>
+    <tr><td>NotebookLM</td><td>Agregar transcripciones y artículos y pedir resúmenes, preguntas y un mapa de los pasos.</td></tr>
+    <tr><td>Obsidian</td><td>Escribir el manual en Markdown, un archivo por paso, con enlaces entre ellos.</td></tr>
+    <tr><td>Notion</td><td>Versión para equipos: una página por paso, lista de verificación y comentarios.</td></tr>
+    <tr><td>Lector de RSS</td><td>La Ventana: reúne las fuentes en un solo lugar y ábrelas solo en el horario fijo (Feedly, Inoreader, NetNewsWire).</td></tr>
+    <tr><td>Google Calendar</td><td>Programar el horario semanal de La Ventana, con recordatorio.</td></tr>
+    <tr><td>App de hábitos</td><td>La tarea diaria y la racha (Loop Habit Tracker, Habitica, Streaks).</td></tr>
+    <tr><td>ChatGPT, Claude, Gemini</td><td>La tarea del día y la revisión del manual en lenguaje sencillo.</td></tr>
+    <tr><td>Google Lens, TinEye</td><td>Búsqueda inversa: comprobar si una foto alarmante es antigua o falsa.</td></tr>
+    <tr><td>Lupa, Aos Fatos, Comprova</td><td>Verificar una noticia antes de compartirla.</td></tr>
+    <tr><td>Canva</td><td>Convertir la página única en un cartel para imprimir.</td></tr>
+    <tr><td>GitHub Pages</td><td>Publicar el manual gratis como página web.</td></tr>
+  </table></div>
+</div></section>
+
+<section id="complemento"><div class="wrap">
+  <div class="compl">
+    <div><span class="chip">Complemento</span><h2 style="margin:.3em 0 .4em">sobreviver-ia</h2><p class="mut" style="margin:0">Este manual cuida tu mente. El kit sobreviver-ia cuida tu casa y tu trabajo: kit para 14 días, IA que funciona sin internet, seguridad de tus cuentas y una prueba de tu trabajo con IA.</p></div>
+    <a class="btn" href="https://inematds.github.io/sobreviver-ia/guia/es/" target="_blank" rel="noopener">Abrir sobreviver-ia</a>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Markdown</div><div class="pill">Python 3 sin dependencias</div><div class="pill">16 pruebas</div><div class="pill">MIT</div>
+    <p style="margin-top:18px">manual-2-anos-ia · contenido abierto y gratuito ·
+      <a href="https://github.com/inematds/manual-2-anos-ia">inematds/manual-2-anos-ia</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='manual-2-anos-ia-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

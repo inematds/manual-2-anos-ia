@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>manual-2-anos-ia — 4 steps to get through the next 2 years of AI without panic</title>
+<meta name="description" content="A 4-step method for dealing with AI anxiety, 5 local Python tools, and a step-by-step guide to creating your own manual.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/manual-2-anos-ia/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/manual-2-anos-ia/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/manual-2-anos-ia/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    --ambt:rgba(250,204,21,.14); --ok:#4ade80; --mid:#fb923c; --bad:#f87171;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    --ambt:rgba(161,98,7,.12); --ok:#15803d; --mid:#c2410c; --bad:#b91c1c;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light nav{background:rgba(246,247,249,.85)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:var(--ambt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  body.light .btn{background:#FACC15}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:860px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:36ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:64ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.95rem;margin:0}
+  .card p+p{margin-top:.6em}
+  .card .inc{display:block;margin-top:.8em;padding-top:.7em;border-top:1px dashed var(--line);font-size:.9rem;color:var(--txt)}
+  .card .inc b{color:var(--amb);font-family:Sora;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.2em}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:var(--ambt);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;margin:0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere;background:var(--bg2);border:1px solid var(--line);border-radius:5px;padding:.05em .35em;font-size:.88em}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  body.light .step .b{background:#FACC15}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* 4-step diagram */
+  .rota{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:8px}
+  .rota::before{content:"";position:absolute;left:12%;right:12%;top:38px;height:2px;background:linear-gradient(90deg,var(--line),var(--amb),var(--line))}
+  .rota .p{position:relative;text-align:center;padding:0 10px}
+  .rota .ic{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;background:var(--card);border:2px solid var(--amb);display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+  .rota .ic svg{width:38px;height:38px;stroke:var(--amb);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .rota h3{font-size:1rem;margin-bottom:.35em}
+  .rota .q{font-family:Sora;font-size:.8rem;color:var(--amb);margin-bottom:.4em}
+  .rota p{color:var(--mut);font-size:.9rem;margin:0}
+  .rota .tool{display:inline-block;margin-top:.6em;font-family:"JetBrains Mono";font-size:.78rem;color:var(--txt);background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:.1em .45em}
+  @media(max-width:820px){.rota{grid-template-columns:1fr 1fr;row-gap:30px}.rota::before{display:none}}
+  @media(max-width:460px){.rota{grid-template-columns:1fr}}
+  /* metaphor */
+  .barco{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px}
+  .barco .card{display:flex;gap:14px;align-items:flex-start}
+  .barco .big{font-family:Sora;font-weight:800;font-size:1.6rem;line-height:1;color:var(--mut);flex:0 0 auto}
+  .barco .card.leme{border-color:var(--amb)} .barco .card.leme .big{color:var(--amb)}
+  @media(max-width:600px){.barco{grid-template-columns:1fr}}
+  /* fields */
+  .campo .tag{display:inline-block;font-family:Sora;font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.25em .6em;border-radius:6px;margin-bottom:.7em;background:var(--ambt);color:var(--amb)}
+  .campo.gov{border-style:dashed}
+  .perg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+  .perg div{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;font-family:Sora;font-weight:600;font-size:.92rem}
+  .perg div span{display:block;color:var(--amb);font-size:1.3rem;font-weight:800;margin-bottom:.15em}
+  @media(max-width:820px){.perg{grid-template-columns:1fr 1fr}}
+  .janela{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:22px}
+  .janela div{border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:.8rem;color:var(--mut);background:var(--card)}
+  .janela div b{display:block;font-family:Sora;color:var(--txt);font-size:.85rem;margin-bottom:.2em}
+  .janela div.on{border-color:var(--amb);background:var(--ambt);color:var(--txt)}
+  .janela div.on b{color:var(--amb)}
+  @media(max-width:600px){.janela{grid-template-columns:repeat(4,1fr)}}
+  /* TLC */
+  .tlc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tlc .card .L{font-family:Sora;font-weight:800;font-size:2.6rem;color:var(--amb);line-height:1}
+  .tlc .card .w{font-family:Sora;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:.2em 0 .6em}
+  .tlc .card .bar{margin-top:.8em;font-size:.85rem;color:var(--txt);border-left:3px solid var(--amb);padding-left:.6em}
+  @media(max-width:820px){.tlc{grid-template-columns:1fr}}
+  .exp{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .exp h3{font-size:1rem;margin-bottom:.2em}
+  .exp .row{display:grid;grid-template-columns:170px minmax(0,1fr) 110px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .exp .row:last-of-type{border:none}
+  .exp .dots{display:flex;gap:6px}
+  .exp .dots i{flex:1;max-width:70px;height:12px;border-radius:4px;background:var(--bg2);border:1px solid var(--line)}
+  .exp .dots i.y{background:var(--amb);border-color:var(--amb)}
+  .exp .lv{font-family:Sora;font-weight:700;font-size:.78rem;text-align:right}
+  .lv.a{color:var(--bad)} .lv.ma{color:var(--mid)} .lv.mb{color:var(--amb)} .lv.b{color:var(--ok)}
+  .exp small{display:block;color:var(--mut);margin-top:10px}
+  @media(max-width:560px){.exp .row{grid-template-columns:1fr 90px}.exp .row .dots{grid-column:1/-1;order:3}}
+  /* pipeline */
+  .pipe{counter-reset:p;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .pipe .card{position:relative;padding-top:18px}
+  .pipe .card h3{font-size:.98rem}
+  .pipe .card .who{position:absolute;top:14px;right:14px;font-size:.95rem}
+  .pipe .card .t{display:block;margin-top:.55em;font-size:.82rem;color:var(--txt)}
+  @media(max-width:820px){.pipe{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.pipe{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:Sora;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  td:first-child{font-weight:600;white-space:nowrap}
+  .tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px}
+  @media(max-width:560px){td:first-child{white-space:normal}}
+  .compl{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:24px;flex-wrap:wrap}
+  .compl div{flex:1 1 320px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🧭</span> manual-2-anos-ia</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#passos">The 4 steps</a>
+    <a class="sec" href="#campos">The fields</a>
+    <a class="sec" href="#tlc">TLC</a>
+    <a class="sec" href="#guia">Tools</a>
+    <a class="sec" href="#criar">How to create</a>
+    <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/manual-2-anos-ia" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Manual · INEMA method · local tools</span>
+      <h1>You can’t control the sea. <span class="amb">Only the helm.</span></h1>
+      <p class="lead">4 steps to get through the next 2 years of AI without panic — and a guide to creating your own manual.</p>
+      <div class="cta">
+        <a class="btn" href="#passos">See the 4 steps</a>
+        <a class="btn ghost" href="https://github.com/inematds/manual-2-anos-ia" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-en.jpg" alt="AI manual: 4 steps to get through the next 2 years without panic"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">In brief</span>
+  <p>This is a short manual for anyone who feels anxious about artificial intelligence news. It organizes the subject into 4 steps: understand what happened, know who is speaking and why, measure what is changing in your work, and act in small doses. It comes with 5 simple tools that run on your computer without an internet connection, plus step-by-step instructions for creating a similar manual for your family, team, or school. To read it, just open the page; to use the tools, all you need is Python 3.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>A small boat in the fog</h2>
+  <p class="sub">The metaphor behind the entire manual: the sea and the wind are AI, companies, and governments. You don’t command them. But the helm is yours.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="The manual’s 4 steps and the tools The Window and One task a day" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="barco">
+    <div class="card"><span class="big">✕</span><div><h3>What you can’t control</h3><p>The speed of models, companies’ decisions, the race between countries, tomorrow’s headlines.</p></div></div>
+    <div class="card leme"><span class="big">✓</span><div><h3>What you can control</h3><p>When you read the news, how you read it, what you learn, how you use AI in your work, and whom you help.</p></div></div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><h3>📖 A 5-minute manual</h3><p>One file per step and a single page to print and put on the fridge or team bulletin board.</p></div>
+    <div class="card"><h3>🛠️ 5 local tools</h3><p>Python scripts with no dependencies, account, or internet connection. Your data stays in a file on your machine.</p></div>
+    <div class="card"><h3>🧩 How to create your own</h3><p>The process we use to turn a topic into a manual, videos, and tools, with tools for each stage.</p></div>
+  </div>
+</div></section>
+
+<section id="passos"><div class="wrap">
+  <span class="chip">The method</span>
+  <h2>The 4 steps</h2>
+  <p class="sub">Each step answers a question and has a tool. Follow them in order the first time; after that, return to whichever step you need.</p>
+  <div class="rota">
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/></svg></div>
+      <h3>1. Read the winds</h3>
+      <div class="q">What happened?</div>
+      <p>Write the news in one line, without adjectives, and find the human decision that came first.</p>
+      <span class="tool">campo.py</span>
+    </div>
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="7" cy="15" r="3.5"/><circle cx="17" cy="15" r="3.5"/><path d="M10.5 15h3M5 11.5 7 5h2l1 6M19 11.5 17 5h-2l-1 6"/></svg></div>
+      <h3>2. See through the fog</h3>
+      <div class="q">Who is speaking, and why?</div>
+      <p>Three fields and a fourth player. Four questions. One window each week for the news.</p>
+      <span class="tool">janela.py</span>
+    </div>
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M10 21l1-12h2l1 12M9 9h6M10 6h4l-1-3h-2z"/><path d="M4 6l3 1M20 6l-3 1M4 11l3-.5M20 11l-3-.5"/><path d="M6 21h12"/></svg></div>
+      <h3>3. Find the lighthouse</h3>
+      <div class="q">What changes in MY work?</div>
+      <p>Run your tasks through the TLC model: Trust, Learn, Contact.</p>
+      <span class="tool">tlc.py</span>
+    </div>
+    <div class="p">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20 18 6M6 4l14 14"/><path d="M15 4l5 5M4 15l5 5"/></svg></div>
+      <h3>4. Row to the shore</h3>
+      <div class="q">What do I do now?</div>
+      <p>Look back, do one task a day with AI, and find your contribution.</p>
+      <span class="tool">tarefa_dia.py · contribuicao.py</span>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:34px">
+    <div class="card"><div class="num">1</div><h3>Winds that have been blowing</h3><p>Reports of AI agents that, during break-in tests with protections deliberately reduced, left the isolated environment and reached real systems; models writing instructions for themselves; AI finding flaws in companies during security tests; predictions of catastrophe. Almost always, there is <strong>a human decision at the start</strong> — and human decisions can be held accountable.</p><p><em>Manual rule: if you can’t verify a number in the source, label it “they say.”</em></p></div>
+    <div class="card"><div class="num">4</div><h3>Three oars</h3><p><strong>Look back:</strong> in 1975, at Asilomar, biologists paused genetic engineering and wrote rules; aviation gained agencies such as the FAA; the US and USSR signed nuclear agreements.</p><p><strong>One task a day:</strong> avoided fear grows; fear faced in small doses shrinks.</p><p><strong>Your contribution:</strong> “You can’t cover the Earth in leather, but you can put on a pair of shoes.”</p></div>
+  </div>
+</div></section>
+
+<section id="campos"><div class="wrap">
+  <span class="chip">Step 2 · see through the fog</span>
+  <h2>The three fields and the fourth player</h2>
+  <p class="sub">Almost every AI story comes from one of these places. None is a villain; each has an incentive. Seeing the whole board doesn’t tell you who is right — it tells you why each one speaks the way they do.</p>
+  <div class="grid g4">
+    <div class="card campo"><span class="tag">Safety</span><h3>“Let’s go slowly”</h3><p>Limits, testing, regulation.</p><span class="inc"><b>Incentive</b>Companies preparing to go public; “only we know how to control it” sells too. Watch for mythical product names.</span></div>
+    <div class="card campo"><span class="tag">Accelerationists</span><h3>“Faster”</h3><p>Speed, open source, less regulation.</p><span class="inc"><b>Incentive</b>Many are investors: the faster things move, the greater the return.</span></div>
+    <div class="card campo"><span class="tag">Centrists</span><h3>“Today’s harms”</h3><p>AI is a powerful tool. Focus on jobs, deepfakes, bias, and personal data.</p><span class="inc"><b>Incentive</b>Fewer headlines, more practical details. Often researchers and journalists.</span></div>
+    <div class="card campo gov"><span class="tag">Government · 4th player</span><h3>“The race”</h3><p>US × China. Economy.</p><span class="inc"><b>Incentive</b>A large share of the stock market depends on AI companies. Hitting the brakes costs a lot.</span></div>
+  </div>
+  <div class="perg">
+    <div><span>?</span>What am I assuming?</div>
+    <div><span>✓</span>What are the facts?</div>
+    <div><span>◎</span>Which field does it come from?</div>
+    <div><span>$</span>What is the incentive?</div>
+  </div>
+  <h3 style="margin-top:40px;font-size:1.25rem">The Window: one time each week to make room for anxiety</h3>
+  <p class="mut" style="max-width:68ch">Psychology calls this <strong>worry postponement</strong>. During the week, just write down the headline. At a set time, read everything, mark the field, answer the four questions, close the window, and move on.</p>
+  <div class="janela">
+    <div><b>Mon</b>note</div><div><b>Tue</b>note</div><div><b>Wed</b>note</div><div><b>Thu</b>note</div><div><b>Fri</b>note</div><div><b>Sat</b>note</div><div class="on"><b>Sun 6 pm</b>read · close</div>
+  </div>
+</div></section>
+
+<section id="tlc"><div class="wrap">
+  <span class="chip">Step 3 · find the lighthouse</span>
+  <h2>The TLC model</h2>
+  <p class="sub">Socrates thought writing would destroy memory. Tractors, radio, TV, and smartphones came with the same alarm — psychologist Amy Orben, from Cambridge, calls this the technology panic cycle. Instead of general panic, assess your own situation: each barrier lowers the risk.</p>
+  <div class="tlc">
+    <div class="card"><div class="L">T</div><div class="w">Trust · Trust</div><p>Does the work require trust and someone accountable for the result?</p><div class="bar">A barrier when the answer is <strong>yes</strong>. We still don’t trust a robot doctor, auditor, or lawyer.</div></div>
+    <div class="card"><div class="L">L</div><div class="w">Learn · Learn</div><p>Can AI quickly learn what you do? Digital, repeatable, and easy to check = quick to learn.</p><div class="bar">A barrier when the answer is <strong>no</strong>.</div></div>
+    <div class="card"><div class="L">C</div><div class="w">Contact · Contact</div><p>Does it require physical contact with the world: hands, body, presence, place?</p><div class="bar">A barrier when the answer is <strong>yes</strong>.</div></div>
+  </div>
+  <div class="exp">
+    <h3>Barriers × exposure</h3>
+    <div class="row"><span>Programming</span><span class="dots"><i></i><i></i><i></i></span><span class="lv a">0/3 · HIGH</span></div>
+    <div class="row"><span>Chat support</span><span class="dots"><i></i><i></i><i></i></span><span class="lv a">0/3 · HIGH</span></div>
+    <div class="row"><span>Accounting</span><span class="dots"><i class="y"></i><i></i><i></i></span><span class="lv ma">1/3 · MEDIUM-HIGH</span></div>
+    <div class="row"><span>Electrician</span><span class="dots"><i class="y"></i><i class="y"></i><i></i></span><span class="lv mb">2/3 · MEDIUM-LOW</span></div>
+    <div class="row"><span>Nursing</span><span class="dots"><i class="y"></i><i class="y"></i><i class="y"></i></span><span class="lv b">3/3 · LOW</span></div>
+    <small>Illustrative examples (each yellow square = one barrier). Run <code>tlc.py</code> with your answers: the same profession changes depending on the tasks. Programming and chat support pass through all three without stumbling — that’s why they feel it first.</small>
+  </div>
+  <p style="margin-top:22px;max-width:70ch"><strong class="amb">Your advantage:</strong> human connection + expertise in your field. Computers have beaten us at chess for decades, and we still play chess — with other people.</p>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requirements</span>
+  <h2>Just Python 3</h2>
+  <p class="sub">You don’t need anything to read the manual. For the tools, you need Python 3.10 or newer (already included on Linux and macOS; on Windows, install it from python.org).</p>
+  <div class="grid g2">
+    <div class="card"><h3>Download the repository</h3><p>Use git, or click “Code → Download ZIP” on GitHub.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/manual-2-anos-ia</span>
+<span class="k">cd</span> manual-2-anos-ia</pre></div>
+    <div class="card"><h3>Check that everything works</h3><p>Runs the tools’ 16 tests. It should finish with <code>OK</code>.</p><pre><span class="k">python3 -m unittest</span>
+<span class="c"># Ran 16 tests ... OK</span></pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">User guide · step by step</span>
+  <h2>The 5 tools, one at a time</h2>
+  <p class="sub">Run all commands from the <code>ferramentas/</code> folder. Data is stored in <code>~/.manual-ia/</code> (change it with the <code>MANUAL_IA_DADOS</code> variable or <code>--arquivo</code>).</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Read the one-page manual</h3>
+    <p>Start with <a href="https://github.com/inematds/manual-2-anos-ia/blob/main/manual/MANUAL.md" target="_blank" rel="noopener">manual/MANUAL.md</a> (in Portuguese). Details for each step are in <code>manual/01…04</code>.</p>
+<pre><span class="k">cd</span> ferramentas</pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Build a news card (steps 1 and 2)</h3>
+    <p><code>campo.py</code> asks questions and returns a card with the field, incentive, facts, and assumptions. Without arguments, it asks everything in the terminal.</p>
+<pre><span class="k">python3 campo.py</span> --manchete <span class="s">"AI breaks into company during test"</span> --quem <span class="s">"lab X"</span> \
+  --campo seguranca --incentivo <span class="s">"show that the model is powerful"</span> \
+  --fato <span class="s">"authorized test"</span> --suposicao <span class="s">"it will happen at any company"</span>
+<span class="c"># Veredito: Não confirmado. Guarde para a janela e não repasse.</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Use The Window during the week (step 2)</h3>
+    <p>Write down the headline and <strong>don’t read it now</strong>. At the set time, list everything, read, and close.</p>
+<pre><span class="k">python3 janela.py add</span> <span class="s">"Agents left the sandbox during a test"</span> --campo seguranca
+<span class="k">python3 janela.py listar</span>        <span class="c"># at window time, grouped by field</span>
+<span class="k">python3 janela.py ler</span> --todas    <span class="c"># close the window and move on</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Run your tasks through TLC (step 3)</h3>
+    <p>Answer y/n for Trust, Learn, and Contact. Without arguments, it switches to interactive mode.</p>
+<pre><span class="k">python3 tlc.py</span> <span class="s">"Chat support"</span> --confianca n --aprende s --contato n
+<span class="c"># Barreiras: 0/3  ->  exposição ALTA</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>One task a day with AI (step 4)</h3>
+    <p>Log your small task for the day and track your streak.</p>
+<pre><span class="k">python3 tarefa_dia.py feito</span> <span class="s">"asked AI to explain a bill"</span>
+<span class="k">python3 tarefa_dia.py status</span>   <span class="c"># Current streak: 1 day(s) ■</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Choose your contribution (step 4)</h3>
+    <p>Four ready-made options (deepfakes with parents and grandparents, rules with children, helping colleagues, creating a manual for your group), each with a 4-week plan.</p>
+<pre><span class="k">python3 contribuicao.py listar</span>
+<span class="k">python3 contribuicao.py plano</span> 1 --para <span class="s">"my mother"</span> --salvar plano.md</pre>
+  </div></div>
+</div></section>
+
+<section id="criar"><div class="wrap">
+  <span class="chip">How to create the manual</span>
+  <h2>From topic to manual, videos, and tools</h2>
+  <p class="sub">This is how INEMA turns a topic into three pieces that reinforce one another: a 5-minute text, a 3-minute video, and tools for everyday use. Details in <a href="https://github.com/inematds/manual-2-anos-ia/blob/main/COMO-CRIAR-O-MANUAL.md" target="_blank" rel="noopener">COMO-CRIAR-O-MANUAL.md</a> (in Portuguese).</p>
+  <div class="pipe">
+    <div class="card"><span class="who">🧠</span><div class="num">1</div><h3>Choose a topic and reference</h3><p>One sentence: what fear or question does this resolve?</p></div>
+    <div class="card"><span class="who">⚙️</span><div class="num">2</div><h3>Download and transcribe</h3><p>Text with timestamps.</p><span class="t">inemavox · yt-dlp · local Whisper</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">3</div><h3>Extract the structure</h3><p>Steps, metaphor, examples, memorable lines.</p><span class="t">AI agent</span></div>
+    <div class="card"><span class="who">🤖🧠</span><div class="num">4</div><h3>Check the facts</h3><p>Confirmed or unconfirmed, with a source.</p><span class="t">agent + web search</span></div>
+    <div class="card"><span class="who">🧠🤖</span><div class="num">5</div><h3>Write the manual</h3><p>One file per step + one printable page.</p><span class="t">Markdown</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">6</div><h3>Turn it into a tool</h3><p>What gets repeated becomes a tested local script.</p><span class="t">Python 3 · unittest</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">7</div><h3>Redesign as images</h3><p>Banners, diagrams, and cover.</p><span class="t">Codex image_gen · flux2-klein (backup)</span></div>
+    <div class="card"><span class="who">🤖🧠</span><div class="num">8</div><h3>Script and video</h3><p>16:9 explainer and 9:16 cut with an avatar.</p><span class="t">explicavideos · HeyGen studio</span></div>
+    <div class="card"><span class="who">⚙️</span><div class="num">9</div><h3>Translate PT → EN/ES</h3><p>Guide, README, and videos in 3 languages.</p><span class="t">INEMA central translator</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">10</div><h3>Guide / landing page</h3><p>Single page, no build step.</p><span class="t">GitHub Pages + Actions</span></div>
+    <div class="card"><span class="who">⚙️🧠</span><div class="num">11</div><h3>Publish</h3><p>Video, community, and catalog.</p><span class="t">YouTube · Telegram · inema.club</span></div>
+    <div class="card"><span class="who">🤖</span><div class="num">12</div><h3>Review with fresh eyes</h3><p>An agent that has never seen the work gives it a score.</p><span class="t">independent reviewer</span></div>
+  </div>
+  <p class="mut" style="margin-top:14px;font-size:.88rem">🧠 session with a person · ⚙️ script · 🤖 AI agent</p>
+
+  <h3 style="margin-top:40px;font-size:1.25rem">Public tools for creating your own</h3>
+  <p class="mut" style="max-width:68ch;margin-bottom:16px">Anyone can create a similar manual with common tools:</p>
+  <div class="tw"><table>
+    <tr><th>Tool</th><th>How it helps with the manual</th></tr>
+    <tr><td>NotebookLM</td><td>Add transcripts and articles, then ask for a summary, questions, and a map of the steps.</td></tr>
+    <tr><td>Obsidian</td><td>Write the manual in Markdown, one file per step, with links between them.</td></tr>
+    <tr><td>Notion</td><td>Team version: one page per step, with a checklist and comments.</td></tr>
+    <tr><td>RSS reader</td><td>The Window: gather sources in one place and open them only at the set time (Feedly, Inoreader, NetNewsWire).</td></tr>
+    <tr><td>Google Calendar</td><td>Schedule the weekly Window, with a reminder.</td></tr>
+    <tr><td>Habit app</td><td>Track one task a day and your streak (Loop Habit Tracker, Habitica, Streaks).</td></tr>
+    <tr><td>ChatGPT, Claude, Gemini</td><td>Help with the day’s task and review the manual in plain language.</td></tr>
+    <tr><td>Google Lens, TinEye</td><td>Reverse image search: check whether a disturbing photo is old or fake.</td></tr>
+    <tr><td>Lupa, Aos Fatos, Comprova</td><td>Check a story before sharing it.</td></tr>
+    <tr><td>Canva</td><td>Turn the single page into a poster to print.</td></tr>
+    <tr><td>GitHub Pages</td><td>Publish the manual for free as a web page.</td></tr>
+  </table></div>
+</div></section>
+
+<section id="complemento"><div class="wrap">
+  <div class="compl">
+    <div><span class="chip">Companion</span><h2 style="margin:.3em 0 .4em">sobreviver-ia</h2><p class="mut" style="margin:0">This manual takes care of your mind. The sobreviver-ia kit takes care of your home and work: a 14-day kit, AI that runs without internet, account security, and a test of how AI affects your work.</p></div>
+    <a class="btn" href="https://inematds.github.io/sobreviver-ia/guia/en/" target="_blank" rel="noopener">Open sobreviver-ia</a>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Markdown</div><div class="pill">Python 3, no dependencies</div><div class="pill">16 tests</div><div class="pill">MIT</div>
+    <p style="margin-top:18px">manual-2-anos-ia · open, free content ·
+      <a href="https://github.com/inematds/manual-2-anos-ia">inematds/manual-2-anos-ia</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='manual-2-anos-ia-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
