@@ -12,6 +12,11 @@ Este é um manual curto para quem sente ansiedade com as notícias de inteligên
 
 Guia completo (landing + passo a passo): **https://inematds.github.io/manual-2-anos-ia/guia/**
 
+## 🎬 Vídeos
+
+- **Completo (16:9, ≈6 min):** https://www.youtube.com/watch?v=DnkFeQDB8AI
+- **Curto (9:16, 41 s):** https://www.youtube.com/watch?v=XFDDBRPuvwE
+
 ## O método: 4 passos (você não controla o mar, só o leme)
 
 | Passo | Pergunta | Ferramenta |

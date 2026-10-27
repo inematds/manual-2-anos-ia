@@ -12,6 +12,11 @@ Este es un manual breve para quienes sienten ansiedad ante las noticias sobre in
 
 Guía completa (landing + paso a paso): **https://inematds.github.io/manual-2-anos-ia/guia/es/**
 
+## 🎬 Videos
+
+- **Completo (16:9, ≈6 min, en portugués):** https://www.youtube.com/watch?v=DnkFeQDB8AI
+- **Corto (9:16, 41 s, en portugués):** https://www.youtube.com/watch?v=XFDDBRPuvwE
+
 ## El método: 4 pasos (no controlas el mar, solo el timón)
 
 | Paso | Pregunta | Herramienta |

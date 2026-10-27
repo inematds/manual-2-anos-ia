@@ -12,6 +12,11 @@ This is a short manual for people who feel anxious about artificial intelligence
 
 Complete guide (landing page + step-by-step instructions): **https://inematds.github.io/manual-2-anos-ia/guia/en/**
 
+## 🎬 Videos
+
+- **Full (16:9, ≈6 min, in Portuguese):** https://www.youtube.com/watch?v=DnkFeQDB8AI
+- **Short (9:16, 41 s, in Portuguese):** https://www.youtube.com/watch?v=XFDDBRPuvwE
+
 ## The method: 4 steps (you don't control the sea, only the helm)
 
 | Step | Question | Tool |
