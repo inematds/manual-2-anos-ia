@@ -303,7 +303,7 @@
     <div class="row"><span>Contabilidade</span><span class="dots"><i class="y"></i><i></i><i></i></span><span class="lv ma">1/3 · MÉDIA-ALTA</span></div>
     <div class="row"><span>Eletricista</span><span class="dots"><i class="y"></i><i class="y"></i><i></i></span><span class="lv mb">2/3 · MÉDIA-BAIXA</span></div>
     <div class="row"><span>Enfermagem</span><span class="dots"><i class="y"></i><i class="y"></i><i class="y"></i></span><span class="lv b">3/3 · BAIXA</span></div>
-    <small>Exemplos ilustrativos (cada quadrado amarelo = uma barreira). Rode <code>tlc.py</code> com as suas respostas: a mesma profissão muda conforme as tarefas. Programação e atendimento passam pelas três sem tropeçar — por isso sentem primeiro.</small>
+    <small>Exemplos ilustrativos (cada quadrado preenchido = uma barreira). Rode <code>tlc.py</code> com as suas respostas: a mesma profissão muda conforme as tarefas. Programação e atendimento passam pelas três sem tropeçar — por isso sentem primeiro.</small>
   </div>
   <p style="margin-top:22px;max-width:70ch"><strong class="amb">Sua vantagem:</strong> conexão humana + domínio da sua área. O computador ganha de nós no xadrez há décadas, e a gente continua jogando xadrez — entre humanos.</p>
 </div></section>
@@ -311,7 +311,7 @@
 <section id="pre"><div class="wrap">
   <span class="chip">Pré-requisitos</span>
   <h2>Só Python 3</h2>
-  <p class="sub">Para ler o manual, não precisa de nada. Para as ferramentas, Python 3.10 ou mais novo (já vem no Linux e no macOS; no Windows, instale pelo python.org).</p>
+  <p class="sub">Para ler o manual, não precisa de nada. Para as ferramentas, Python 3.10 ou mais novo (já vem no Linux e no macOS; no Windows, instale pelo python.org e troque <code>python3</code> por <code>py</code> em todos os comandos). Os comandos são digitados no terminal: Terminal no Linux e no macOS, PowerShell no Windows.</p>
   <div class="grid g2">
     <div class="card"><h3>Baixar o repositório</h3><p>Com git, ou pelo botão "Code → Download ZIP" no GitHub.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/manual-2-anos-ia</span>
 <span class="k">cd</span> manual-2-anos-ia</pre></div>
@@ -323,17 +323,18 @@
 <section id="guia"><div class="wrap">
   <span class="chip">Guia de uso · passo a passo</span>
   <h2>As 5 ferramentas, uma por vez</h2>
-  <p class="sub">Todos os comandos rodam dentro da pasta <code>ferramentas/</code>. Os dados ficam em <code>~/.manual-ia/</code> (troque com a variável <code>MANUAL_IA_DADOS</code> ou com <code>--arquivo</code>).</p>
+  <p class="sub">Depois do passo 1, os comandos rodam dentro da pasta <code>ferramentas/</code>. O que você anota fica num arquivo em <code>~/.manual-ia/</code>, na sua pasta pessoal. Para guardar em outro lugar, rode antes <code>export MANUAL_IA_DADOS=/outra/pasta</code> ou acrescente <code>--arquivo meu.json</code> ao comando.</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Leia o manual de uma página</h3>
     <p>Comece pelo <a href="https://github.com/inematds/manual-2-anos-ia/blob/main/manual/MANUAL.md" target="_blank" rel="noopener">manual/MANUAL.md</a>. Os detalhes de cada passo estão em <code>manual/01…04</code>.</p>
-<pre><span class="k">cd</span> ferramentas</pre>
+<pre><span class="k">cat</span> manual/MANUAL.md   <span class="c"># lê o manual no terminal (ou abra o link acima)</span>
+<span class="k">cd</span> ferramentas         <span class="c"># os próximos comandos rodam dentro desta pasta</span></pre>
   </div></div>
 
   <div class="step"><div class="b">2</div><div>
     <h3>Monte o cartão de uma notícia (passos 1 e 2)</h3>
-    <p><code>campo.py</code> faz as perguntas e devolve um cartão com campo, incentivo, fatos e suposições. Sem argumentos, pergunta tudo no terminal.</p>
+    <p><code>campo.py</code> faz as perguntas e devolve um cartão com campo, incentivo, fatos e suposições. Sem argumentos, pergunta tudo no terminal. Valores de <code>--campo</code>: <code>seguranca</code>, <code>acelera</code>, <code>centro</code>, <code>governo</code> (ou <code>"?"</code> se ainda não souber).</p>
 <pre><span class="k">python3 campo.py</span> --manchete <span class="s">"IA invade empresa em teste"</span> --quem <span class="s">"laboratório X"</span> \
   --campo seguranca --incentivo <span class="s">"mostrar que o modelo é poderoso"</span> \
   --fato <span class="s">"teste autorizado"</span> --suposicao <span class="s">"vai acontecer em qualquer empresa"</span>
@@ -343,7 +344,7 @@
   <div class="step"><div class="b">3</div><div>
     <h3>Use A Janela durante a semana (passo 2)</h3>
     <p>Anote a manchete e <strong>não leia agora</strong>. No horário fixo, liste, leia e feche.</p>
-<pre><span class="k">python3 janela.py add</span> <span class="s">"Agentes saíram do sandbox em teste"</span> --campo seguranca
+<pre><span class="k">python3 janela.py add</span> <span class="s">"Agentes saíram do ambiente isolado em teste"</span> --campo seguranca
 <span class="k">python3 janela.py listar</span>        <span class="c"># na hora da janela, agrupado por campo</span>
 <span class="k">python3 janela.py ler</span> --todas    <span class="c"># fecha a janela e segue</span></pre>
   </div></div>
@@ -366,7 +367,8 @@
     <h3>Escolha sua contribuição (passo 4)</h3>
     <p>Quatro opções prontas (deepfake com pais e avós, regras com os filhos, ajudar colegas, montar um manual para o seu grupo), cada uma com plano de 4 semanas.</p>
 <pre><span class="k">python3 contribuicao.py listar</span>
-<span class="k">python3 contribuicao.py plano</span> 1 --para <span class="s">"minha mãe"</span> --salvar plano.md</pre>
+<span class="k">python3 contribuicao.py plano</span> 1 --para <span class="s">"minha mãe"</span> --salvar plano.md
+<span class="c"># plano.md fica na pasta ferramentas/ e abre em qualquer editor de texto</span></pre>
   </div></div>
 </div></section>
 

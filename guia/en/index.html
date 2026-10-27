@@ -303,7 +303,7 @@
     <div class="row"><span>Accounting</span><span class="dots"><i class="y"></i><i></i><i></i></span><span class="lv ma">1/3 · MEDIUM-HIGH</span></div>
     <div class="row"><span>Electrician</span><span class="dots"><i class="y"></i><i class="y"></i><i></i></span><span class="lv mb">2/3 · MEDIUM-LOW</span></div>
     <div class="row"><span>Nursing</span><span class="dots"><i class="y"></i><i class="y"></i><i class="y"></i></span><span class="lv b">3/3 · LOW</span></div>
-    <small>Illustrative examples (each yellow square = one barrier). Run <code>tlc.py</code> with your answers: the same profession changes depending on the tasks. Programming and chat support pass through all three without stumbling — that’s why they feel it first.</small>
+    <small>Illustrative examples (each filled square = one barrier). Run <code>tlc.py</code> with your answers: the same profession changes depending on the tasks. Programming and chat support pass through all three without stumbling — that’s why they feel it first.</small>
   </div>
   <p style="margin-top:22px;max-width:70ch"><strong class="amb">Your advantage:</strong> human connection + expertise in your field. Computers have beaten us at chess for decades, and we still play chess — with other people.</p>
 </div></section>
@@ -311,7 +311,7 @@
 <section id="pre"><div class="wrap">
   <span class="chip">Requirements</span>
   <h2>Just Python 3</h2>
-  <p class="sub">You don’t need anything to read the manual. For the tools, you need Python 3.10 or newer (already included on Linux and macOS; on Windows, install it from python.org).</p>
+  <p class="sub">You don’t need anything to read the manual. For the tools, you need Python 3.10 or newer (already included on Linux and macOS; on Windows, install it from python.org and replace <code>python3</code> with <code>py</code> in every command). Commands are typed in the terminal: Terminal on Linux and macOS, PowerShell on Windows.</p>
   <div class="grid g2">
     <div class="card"><h3>Download the repository</h3><p>Use git, or click “Code → Download ZIP” on GitHub.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/manual-2-anos-ia</span>
 <span class="k">cd</span> manual-2-anos-ia</pre></div>
@@ -323,17 +323,18 @@
 <section id="guia"><div class="wrap">
   <span class="chip">User guide · step by step</span>
   <h2>The 5 tools, one at a time</h2>
-  <p class="sub">Run all commands from the <code>ferramentas/</code> folder. Data is stored in <code>~/.manual-ia/</code> (change it with the <code>MANUAL_IA_DADOS</code> variable or <code>--arquivo</code>).</p>
+  <p class="sub">After step 1, run the commands from the <code>ferramentas/</code> folder. What you write down is saved in a file in <code>~/.manual-ia/</code>, in your home folder. To store it elsewhere, first run <code>export MANUAL_IA_DADOS=/other/folder</code> or add <code>--arquivo my.json</code> to the command. The tools print their messages in Portuguese.</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Read the one-page manual</h3>
     <p>Start with <a href="https://github.com/inematds/manual-2-anos-ia/blob/main/manual/MANUAL.md" target="_blank" rel="noopener">manual/MANUAL.md</a> (in Portuguese). Details for each step are in <code>manual/01…04</code>.</p>
-<pre><span class="k">cd</span> ferramentas</pre>
+<pre><span class="k">cat</span> manual/MANUAL.md   <span class="c"># read the manual in the terminal (or open the link above)</span>
+<span class="k">cd</span> ferramentas         <span class="c"># the next commands run inside this folder</span></pre>
   </div></div>
 
   <div class="step"><div class="b">2</div><div>
     <h3>Build a news card (steps 1 and 2)</h3>
-    <p><code>campo.py</code> asks questions and returns a card with the field, incentive, facts, and assumptions. Without arguments, it asks everything in the terminal.</p>
+    <p><code>campo.py</code> asks questions and returns a card with the field, incentive, facts, and assumptions. Without arguments, it asks everything in the terminal. Values for <code>--campo</code>: <code>seguranca</code> (safety), <code>acelera</code> (accelerationists), <code>centro</code> (centrists), <code>governo</code> (government), or <code>"?"</code> if you are not sure yet.</p>
 <pre><span class="k">python3 campo.py</span> --manchete <span class="s">"AI breaks into company during test"</span> --quem <span class="s">"lab X"</span> \
   --campo seguranca --incentivo <span class="s">"show that the model is powerful"</span> \
   --fato <span class="s">"authorized test"</span> --suposicao <span class="s">"it will happen at any company"</span>
@@ -343,7 +344,7 @@
   <div class="step"><div class="b">3</div><div>
     <h3>Use The Window during the week (step 2)</h3>
     <p>Write down the headline and <strong>don’t read it now</strong>. At the set time, list everything, read, and close.</p>
-<pre><span class="k">python3 janela.py add</span> <span class="s">"Agents left the sandbox during a test"</span> --campo seguranca
+<pre><span class="k">python3 janela.py add</span> <span class="s">"Agents left the isolated environment during a test"</span> --campo seguranca
 <span class="k">python3 janela.py listar</span>        <span class="c"># at window time, grouped by field</span>
 <span class="k">python3 janela.py ler</span> --todas    <span class="c"># close the window and move on</span></pre>
   </div></div>
@@ -366,7 +367,8 @@
     <h3>Choose your contribution (step 4)</h3>
     <p>Four ready-made options (deepfakes with parents and grandparents, rules with children, helping colleagues, creating a manual for your group), each with a 4-week plan.</p>
 <pre><span class="k">python3 contribuicao.py listar</span>
-<span class="k">python3 contribuicao.py plano</span> 1 --para <span class="s">"my mother"</span> --salvar plano.md</pre>
+<span class="k">python3 contribuicao.py plano</span> 1 --para <span class="s">"my mother"</span> --salvar plano.md
+<span class="c"># plano.md is saved in the ferramentas/ folder and opens in any text editor</span></pre>
   </div></div>
 </div></section>
 
